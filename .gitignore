@@ -1,0 +1,4 @@
+checkpoints/*.lib
+output.png
+venv/
+__pycache__/
