@@ -1,4 +1,4 @@
-import cv2
+from PIL import Image
 
 #Import Neural Network Model
 from gan import DataLoader, DeepModel, tensor2im
@@ -77,7 +77,6 @@ def process(cv_img):
 
     im = tensor2im(generated.data[0])
 
-    #Save Data
-    mask = cv2.cvtColor(im, cv2.COLOR_RGB2BGR)
+    mask = extract_mask(im)
+    return Image.fromarray(mask)
 
-    return extract_mask(mask)

@@ -22,3 +22,4 @@ def extract_mask(cv_mask: cv2.Mat):
     green_mask = cv2.dilate(green_mask, kernel, iterations = 1)
 
     return cv2.bitwise_and(white, white, mask = green_mask)
+
