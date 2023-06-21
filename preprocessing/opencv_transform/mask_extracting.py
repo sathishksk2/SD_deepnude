@@ -21,5 +21,6 @@ def extract_mask(cv_mask: cv2.Mat):
     kernel = np.ones((5,5),np.uint8) #Try change it?
     green_mask = cv2.dilate(green_mask, kernel, iterations = 1)
 
-    return cv2.bitwise_and(white, white, mask = green_mask)
+    return green_mask
+    # return cv2.bitwise_and(white, white, mask = green_mask)
 

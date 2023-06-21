@@ -1,3 +1,5 @@
+import io
+
 import cv2
 from PIL import ImageFilter
 import numpy as np
@@ -12,7 +14,8 @@ def preprocess(image_bytes: bytes) -> bytes:
     # Process to mask
     mask = process(input_image).filter(ImageFilter.BLUR)
 
-    mask = cv2.cvtColor(input_image, cv2.COLOR_RGB2BGR)
+    image = io.BytesIO()
+    mask.save(image, format='PNG')
 
-    return cv2.imencode('.png', mask)[1].tobytes()
+    return image.getvalue()
 

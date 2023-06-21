@@ -7,6 +7,7 @@ from aiogram.filters import Command
 from aiogram.types import Message, BufferedInputFile
 
 from preprocessing.preprocess import preprocess
+from sd_api import inpaint
 
 # Bot token can be obtained via https://t.me/BotFather
 API_TOKEN = os.environ["API_TOKEN"]
@@ -38,14 +39,19 @@ async def generate_handler(message: types.Message) -> None:
         await message.answer_dice("🎯")
         return
 
-    photo_info = photos[0]
+    photo_info = photos[-1]
     file_info = await bot.get_file(photo_info.file_id)
     photo = await bot.download_file(file_info.file_path)
+    image = photo.read()
     
-    image = preprocess(photo.read())
-    image = BufferedInputFile(image, "lmao.png")
+    # getting mask
+    mask = preprocess(image)
 
-    await message.answer_photo(image)
+    # getting result image
+    result_image = await inpaint(image, mask)
+    result_image = BufferedInputFile(result_image, "lmao.png")
+
+    await message.answer_photo(result_image)
 
 
 # Dispatcher is a root router
