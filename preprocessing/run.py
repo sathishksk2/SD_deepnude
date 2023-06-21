@@ -1,11 +1,11 @@
 from PIL import Image
 
 #Import Neural Network Model
-from gan import DataLoader, DeepModel, tensor2im
+from .gan import DataLoader, DeepModel, tensor2im
 
 #OpenCv Transform:
-from opencv_transform.dress_to_correct import create_correct
-from opencv_transform.mask_extracting import extract_mask
+from .opencv_transform.dress_to_correct import create_correct
+from .opencv_transform.mask_extracting import extract_mask
 
 """
 run.py
