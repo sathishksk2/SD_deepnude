@@ -1,0 +1,2 @@
+aiogram==3.14
+opencv-python-headless==4.5.4.60
